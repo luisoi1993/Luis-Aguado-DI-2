@@ -3,18 +3,18 @@ package model;
 /*
     Un encargo debe tener un responsable
  */
-public class Encargo {
+public class Proyecto {
     private int id;
     private String descripcion;
     private boolean completada;
 
-    public Encargo(int id, String descripcion) {
+    public Proyecto(int id, String descripcion) {
         this.id = id;
         this.descripcion = descripcion;
         // completada = false;
     }
 
-    public Encargo() {
+    public Proyecto() {
     }
 
     public void mostrarDatos(){
@@ -49,7 +49,7 @@ public class Encargo {
 
     @Override
     public String toString() {
-        return "Encargo{" +
+        return "Proyecto{" +
                 "id=" + id +
                 ", descripcion='" + descripcion + '\'' +
                 ", completada=" + completada +

@@ -79,7 +79,8 @@ abstract public class Tarea {
         listaTareas = new ArrayList<>();
     }
 
-    public  abstract void  enviarRecorsatorio();
+    // enviarRecordatorio -> totalmente diferente en TPro TPer
+    public abstract void enviarRecordatorio();
 
     // metodos -> getter / setter
 
