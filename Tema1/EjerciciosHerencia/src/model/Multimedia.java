@@ -54,4 +54,23 @@ abstract public class Multimedia {
     public void setFormato(String formato) {
         this.formato = formato;
     }
+
+    public void mostrarDatos() {
+        System.out.println("EL identificador es " + identificador);
+        System.out.println("El titulo es " + titulo);
+        System.out.println("El autor es " + autor);
+        System.out.println("El tamaño es " + tamanio);
+        System.out.println("El formato es " + formato);
+    }
+
+    @Override
+    public String toString() {
+        return "Multimedia{" +
+                "identificador=" + identificador +
+                ", titulo='" + titulo + '\'' +
+                ", autor='" + autor + '\'' +
+                ", tamanio=" + tamanio +
+                ", formato='" + formato + '\'' +
+                '}';
+    }
 }

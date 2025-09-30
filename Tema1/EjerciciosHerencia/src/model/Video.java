@@ -27,4 +27,22 @@ public class Video extends Multimedia{
     public void setActores(List<Actor> actores) {
         this.actores = actores;
     }
+
+    @Override
+    public void mostrarDatos() {
+        super.mostrarDatos();
+        System.out.println("El Director es" );
+        director.mostrarDatos();
+        for (Actor a : actores){
+            a.mostrarDatos();
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "Video{" +
+                "director=" + director +
+                ", actores=" + actores +
+                '}';
+    }
 }

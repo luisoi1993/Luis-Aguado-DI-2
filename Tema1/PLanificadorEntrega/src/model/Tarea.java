@@ -1,25 +1,33 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
-public class Tarea {
-    private static int contador = 1;
-    private int id;
-    private String titulo;
-    private Date fecha;
-    private Prioridad prioridad;
-    private boolean completada = false;
+public abstract class Tarea {
+    protected static int contador = 1;
+
+
+    protected int id;
+    protected String titulo;
+    protected String descripcion;
+    protected Date fecha;
+    protected Prioridad prioridad;
+    protected boolean completada = false;
+    protected List<Tarea> subtareas = new ArrayList<>();
+
 
     public Tarea(){
         this.id = contador++;
     }
 
-    public Tarea( String titulo, Date fecha, Prioridad prioridad, boolean completada) {
+    public Tarea( String titulo, String descripcion, Date fecha, Prioridad prioridad) {
         this.id = contador++;
         this.titulo = titulo;
+        this.descripcion = descripcion;
         this.fecha = fecha;
         this.prioridad = prioridad;
-        this.completada = completada;
+
     }
 
     public int getId() {
@@ -33,6 +41,14 @@ public class Tarea {
 
     public void setTitulo(String titulo) {
         this.titulo = titulo;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
     public Date getFecha() {
@@ -55,18 +71,71 @@ public class Tarea {
         return completada;
     }
 
-    public void setCompletada(boolean completada) {
-        this.completada = completada;
+
+
+    public List<Tarea> getSubtareas() {
+        return subtareas;
     }
+
+    public void agregarSubtarea(Tarea subtarea){
+        subtareas.add(subtarea);
+    }
+
+    public void actualizarCompletada() {
+        if (!subtareas.isEmpty()) {
+            this.completada = subtareas.stream().allMatch(Tarea::isCompletada);
+        }
+    }
+
+    public void marcarCompletada() {
+        if (subtareas.isEmpty()) {
+            this.completada = true;
+        } else {
+            System.out.println("No se puede completar manualmente, depende de subtareas.");
+        }
+    }
+
+    public void mostrarTareaConSubtareas(String prefijo) {
+        System.out.println(prefijo + this);
+
+        for (Tarea sub : subtareas) {
+            sub.mostrarTareaConSubtareas(prefijo + "    ");
+        }
+    }
+
+    public boolean esCompletable() {
+        return subtareas.isEmpty();
+    }
+
+    public void completar() {
+        if (esCompletable()) {
+            this.completada = true;
+        } else {
+            boolean todasSubtareasCompletas = true;
+            for (Tarea sub : subtareas) {
+                if (!sub.isCompletada()) {
+                    todasSubtareasCompletas = false;
+                    break;
+                }
+            }
+            if (todasSubtareasCompletas) {
+                this.completada = true;
+            }
+        }
+    }
+
+
 
     @Override
     public String toString() {
         return "Tarea{" +
                 "id=" + id +
                 ", titulo='" + titulo + '\'' +
-                ", fecha='" + fecha + '\'' +
+                ", descripcion='" + descripcion + '\'' +
+                ", fecha=" + fecha +
                 ", prioridad=" + prioridad +
                 ", completada=" + completada +
+                ", subtareas=" + subtareas.size() +
                 '}';
     }
 }

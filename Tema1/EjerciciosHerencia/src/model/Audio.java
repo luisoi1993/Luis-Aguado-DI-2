@@ -25,4 +25,19 @@ public class Audio extends Multimedia{
     public void setSoporte(String soporte) {
         this.soporte = soporte;
     }
+
+    @Override
+    public void mostrarDatos() {
+        super.mostrarDatos();
+        System.out.println("La duración es " + duracion);
+        System.out.println("El soporte es " + soporte);
+    }
+
+    @Override
+    public String toString() {
+        return "Audio{" +
+                "duracion=" + duracion +
+                ", soporte='" + soporte + '\'' +
+                '}';
+    }
 }

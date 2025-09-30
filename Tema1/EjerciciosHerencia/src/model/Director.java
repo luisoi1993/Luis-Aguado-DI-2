@@ -6,6 +6,8 @@ public class Director extends Persona {
         super(nombre, dni);
     }
 
-
-
+    @Override
+    public void mostrarDatos() {
+        super.mostrarDatos();
+    }
 }

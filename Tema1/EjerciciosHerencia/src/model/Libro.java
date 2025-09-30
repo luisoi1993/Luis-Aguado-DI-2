@@ -25,4 +25,11 @@ public class Libro extends Multimedia{
     public void setNumeroPaginas(int numeroPaginas) {
         this.numeroPaginas = numeroPaginas;
     }
+
+    @Override
+    public void mostrarDatos() {
+        super.mostrarDatos();
+        System.out.println("El isbn es " + isbn);
+        System.out.println("El numero de paginas es " + numeroPaginas);
+    }
 }

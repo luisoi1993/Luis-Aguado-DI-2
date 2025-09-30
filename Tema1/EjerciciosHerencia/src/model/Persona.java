@@ -24,4 +24,17 @@ abstract public class Persona {
     public void setDni(String dni) {
         this.dni = dni;
     }
+
+    public void mostrarDatos() {
+        System.out.println("El nombre es: " + nombre);
+        System.out.println("El dni es: " + dni);
+    }
+
+    @Override
+    public String toString() {
+        return "Persona{" +
+                "nombre='" + nombre + '\'' +
+                ", dni='" + dni + '\'' +
+                '}';
+    }
 }
