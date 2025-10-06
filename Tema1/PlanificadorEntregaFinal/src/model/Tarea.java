@@ -54,7 +54,7 @@ abstract public class Tarea implements ElementoPlanificador {
     private ArrayList<Encargo> listaTareas;
     private Persona encargadoPrincipal;
     private ArrayList<Tarea> subtareas = new ArrayList<>();
-    private boolean completada; // ✅ añadido
+    private boolean completada;
 
     public Tarea(String titulo, String descripcion, Prioridad prioridad, Persona encargadoPrincipal) {
         this.id = contadorId++;
@@ -64,7 +64,7 @@ abstract public class Tarea implements ElementoPlanificador {
         this.prioridad = prioridad;
         this.encargadoPrincipal = encargadoPrincipal;
         this.subtareas = new ArrayList<>();
-        this.listaTareas = new ArrayList<>(); // ✅ corregido
+        this.listaTareas = new ArrayList<>();
     }
 
     public Tarea(String titulo, String descripcion, int numeroPersonas) {
@@ -73,7 +73,7 @@ abstract public class Tarea implements ElementoPlanificador {
         this.descripcion = descripcion;
         this.encargados = new Persona[numeroPersonas];
         this.listaTareas = new ArrayList<>();
-        this.completada = false; // ✅ inicializado
+        this.completada = false;
     }
 
     @Override
@@ -94,7 +94,7 @@ abstract public class Tarea implements ElementoPlanificador {
     // Método abstracto que implementarán las subclases
     public abstract void enviarRecordatorio();
 
-    // ================= RESPONSABLES =================
+
     public void asignarResponsable(Persona persona) {
         for (int i = 0; i < encargados.length; i++) {
             if (encargados[i] == null && !estaDNI(persona.getDni())) {
