@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/25"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="org.example.amazoncompras.controller.SplashController"
+            prefWidth="600" prefHeight="400">
+    <children>
+        <ImageView fx:id="logoAmazon"
+                   fitWidth="600" fitHeight="400"
+                   preserveRatio="true"
+                   opacity="0.0">
+            <image>
+                <Image url="@imagenes/amaozon.png"/>
+            </image>
+        </ImageView>
+    </children>
+</AnchorPane>
