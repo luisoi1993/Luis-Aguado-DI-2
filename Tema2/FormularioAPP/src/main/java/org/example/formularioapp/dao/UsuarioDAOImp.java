@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UsuarioDAOImp implements UsuarioDAO{
-
     private Connection connection;
 
     private PreparedStatement preparedStatement;
