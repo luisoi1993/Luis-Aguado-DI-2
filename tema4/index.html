@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Luis Aguado — Developer</title>
+
+    <!-- Font -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --bg1: #071228;
+        --bg2: #0e3760;
+        --accent: #28a4f6;
+        --glass: rgba(255, 255, 255, 0.06);
+        --card: rgba(255, 255, 255, 0.04);
+      }
+      * {
+        box-sizing: border-box;
+        font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto,
+          "Helvetica Neue", Arial;
+      }
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        background: linear-gradient(135deg, var(--bg1), var(--bg2));
+        color: #eaf6ff;
+      }
+      .wrap {
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        padding: 32px;
+      }
+      .card {
+        width: 100%;
+        max-width: 1100px;
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.02),
+          rgba(255, 255, 255, 0.01)
+        );
+        border-radius: 14px;
+        overflow: hidden;
+        display: flex;
+        gap: 0;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        border: 1px solid rgba(255, 255, 255, 0.03);
+      }
+      .left {
+        flex: 0 0 420px;
+        padding: 40px;
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.02),
+          rgba(255, 255, 255, 0.01)
+        );
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 18px;
+        position: relative;
+      }
+      .photo {
+        width: 110px;
+        height: 110px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--accent), #6bd3ff);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 800;
+        color: #01243a;
+        font-size: 28px;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+        border: 4px solid rgba(255, 255, 255, 0.06);
+      }
+      .name {
+        font-size: 28px;
+        font-weight: 800;
+        margin: 0;
+      }
+      .role {
+        font-size: 12px;
+        color: rgba(234, 246, 255, 0.7);
+        letter-spacing: 1px;
+        margin-top: -6px;
+      }
+      .contact {
+        font-size: 14px;
+        color: rgba(234, 246, 255, 0.85);
+      }
+      .btns {
+        display: flex;
+        gap: 8px;
+        margin-top: 8px;
+      }
+      .btn {
+        background: var(--accent);
+        color: #042031;
+        padding: 10px 14px;
+        border-radius: 10px;
+        font-weight: 700;
+        text-decoration: none;
+        box-shadow: 0 6px 16px rgba(39, 150, 210, 0.18);
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .ghost {
+        background: transparent;
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        color: inherit;
+        padding: 10px 12px;
+        border-radius: 10px;
+        text-decoration: none;
+        font-weight: 600;
+      }
+      .right {
+        flex: 1;
+        padding: 40px;
+        position: relative;
+        overflow: hidden;
+      }
+      h1 {
+        margin: 0 0 8px 0;
+        font-size: 44px;
+        line-height: 1;
+        color: white;
+      }
+      p.lead {
+        margin: 0 0 18px 0;
+        color: rgba(234, 246, 255, 0.85);
+        max-width: 620px;
+      }
+      .chips {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-top: 12px;
+      }
+      .chip {
+        background: var(--glass);
+        padding: 8px 12px;
+        border-radius: 999px;
+        font-weight: 600;
+        font-size: 13px;
+        color: #dff4ff;
+      }
+      .projects {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 12px;
+        margin-top: 18px;
+      }
+      .proj {
+        background: var(--card);
+        padding: 14px;
+        border-radius: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.03);
+      }
+      .proj h4 {
+        margin: 0;
+        font-size: 14px;
+      }
+      .proj p {
+        margin: 6px 0 0 0;
+        color: rgba(234, 246, 255, 0.75);
+        font-size: 13px;
+      }
+
+      /* animated network */
+      .network {
+        pointer-events: none;
+        position: absolute;
+        inset: 0;
+        opacity: 0.55;
+      }
+      canvas {
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+
+      /* responsive */
+      @media (max-width: 880px) {
+        .card {
+          flex-direction: column;
+        }
+        .left {
+          flex: unset;
+          width: 100%;
+          align-items: center;
+          text-align: center;
+        }
+        .right {
+          padding: 20px;
+        }
+        h1 {
+          font-size: 32px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="card">
+        <div class="left">
+          <div class="photo" id="photo">LA</div>
+          <h2 class="name">Luis Aguado</h2>
+          <div class="role">Estudiante DAM · Junior Developer</div>
+          <div class="contact">
+            📍 Aranjuez · 📧
+            <a
+              href="mailto:luisaguadodiego1993@gmail.com"
+              style="color: inherit; text-decoration: underline"
+              >luisaguadodiego1993@gmail.com</a
+            >
+          </div>
+
+          <div class="btns">
+            <a class="btn" id="cvBtn" href="CV_Luis_Aguado.pdf" target="_blank"
+              >Descargar CV</a
+            >
+            <a
+              class="ghost"
+              id="emailBtn"
+              href="mailto:luisaguadodiego1993@gmail.com"
+              >Contactar</a
+            >
+          </div>
+
+          <div
+            style="
+              margin-top: auto;
+              font-size: 12px;
+              color: rgba(234, 246, 255, 0.6);
+            "
+          >
+            Disponible para FCT / Prácticas · Presencial / Híbrido / Remoto
+          </div>
+        </div>
+
+        <div class="right">
+          <div class="network"><canvas id="net"></canvas></div>
+
+          <h1>
+            Software Developer<br /><span
+              style="font-weight: 600; color: var(--accent)"
+              >en formación (DAM)</span
+            >
+          </h1>
+          <p class="lead">
+            Estudiante de Desarrollo de Aplicaciones Multiplataforma con
+            proyectos en Java, Kotlin y aplicaciones cliente-servidor seguras.
+            Busco prácticas donde aprender de equipos reales y aportar con
+            trabajo y compromiso.
+          </p>
+
+          <div class="chips">
+            <div class="chip">Java</div>
+            <div class="chip">Kotlin</div>
+            <div class="chip">Python</div>
+            <div class="chip">SQL</div>
+            <div class="chip">Android</div>
+            <div class="chip">Git</div>
+          </div>
+
+          <div class="projects" style="margin-top: 18px">
+            <div class="proj">
+              <h4>Aplicación cliente-servidor con SSL</h4>
+              <p>
+                Java · SSL · Multithreading · SQL — Autenticación segura y
+                manejo de concurrencia.
+              </p>
+            </div>
+            <div class="proj">
+              <h4>App móvil (Kotlin)</h4>
+              <p>
+                Kotlin · Android Studio — Navegación, almacenamiento local y UX
+                nativo.
+              </p>
+            </div>
+            <div class="proj">
+              <h4>Web Fullstack</h4>
+              <p>
+                HTML · CSS · JavaScript · PHP · MySQL — Formularios,
+                validaciones y BD.
+              </p>
+            </div>
+          </div>
+
+          <div
+            style="
+              position: absolute;
+              right: 22px;
+              bottom: 22px;
+              display: flex;
+              gap: 10px;
+            "
+          >
+            <a
+              class="ghost"
+              href="https://linkedin.com/in/luis-aguado-diego"
+              target="_blank"
+              >LinkedIn</a
+            >
+            <a
+              class="ghost"
+              href="https://github.com/luisaguado"
+              target="_blank"
+              >GitHub</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Simple network background (canvas)
+      const canvas = document.getElementById("net");
+      const ctx = canvas.getContext("2d");
+      let w = (canvas.width = canvas.offsetWidth);
+      let h = (canvas.height = canvas.offsetHeight);
+      const nodes = [];
+      const NODE_COUNT = Math.max(18, Math.floor((w * h) / 60000));
+
+      function rand(min, max) {
+        return Math.random() * (max - min) + min;
+      }
+
+      function init() {
+        w = canvas.width = canvas.offsetWidth;
+        h = canvas.height = canvas.offsetHeight;
+        nodes.length = 0;
+        for (let i = 0; i < NODE_COUNT; i++) {
+          nodes.push({
+            x: rand(0, w),
+            y: rand(0, h),
+            vx: rand(-0.3, 0.3),
+            vy: rand(-0.3, 0.3),
+            r: rand(1.6, 3),
+          });
+        }
+      }
+
+      function step() {
+        ctx.clearRect(0, 0, w, h);
+        // draw connections
+        for (let i = 0; i < nodes.length; i++) {
+          const a = nodes[i];
+          a.x += a.vx;
+          a.y += a.vy;
+          if (a.x < 0 || a.x > w) a.vx *= -1;
+          if (a.y < 0 || a.y > h) a.vy *= -1;
+          for (let j = i + 1; j < nodes.length; j++) {
+            const b = nodes[j];
+            const dx = a.x - b.x,
+              dy = a.y - b.y;
+            const d = Math.sqrt(dx * dx + dy * dy);
+            if (d < 120) {
+              ctx.beginPath();
+              ctx.moveTo(a.x, a.y);
+              ctx.lineTo(b.x, b.y);
+              ctx.strokeStyle =
+                "rgba(40,164,246," + (0.18 - (d / 120) * 0.15) + ")";
+              ctx.lineWidth = 1;
+              ctx.stroke();
+            }
+          }
+        }
+        // draw nodes
+        for (const n of nodes) {
+          ctx.beginPath();
+          ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
+          ctx.fillStyle = "rgba(40,164,246,0.9)";
+          ctx.fill();
+        }
+        requestAnimationFrame(step);
+      }
+
+      init();
+      step();
+      window.addEventListener("resize", () => {
+        init();
+      });
+
+      // small niceties
+      document.getElementById("photo").innerText = "LA";
+      // CV button - if you don't have a PDF file yet, link to your Google Drive public link
+      // document.getElementById('cvBtn').href = 'https://drive.google.com/...';
+    </script>
+  </body>
+</html>
