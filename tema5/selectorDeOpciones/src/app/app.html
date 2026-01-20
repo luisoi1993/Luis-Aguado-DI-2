@@ -1,0 +1,15 @@
+<div class="container mt-4">
+  <h2>Selecciona una opción</h2>
+
+  <select class="form-select" [(ngModel)]="opcionSeleccionada" name="opcion">
+    <option value="" disabled>-- Elige una opción --</option>
+    <option value="Angular">Angular</option>
+    <option value="React">React</option>
+    <option value="Vue">Vue</option>
+    <option value="Svelte">Svelte</option>
+  </select>
+
+  <p class="mt-3">
+    Opción seleccionada: <strong>{{ opcionSeleccionada }}</strong>
+  </p>
+</div>
