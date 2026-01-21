@@ -1,0 +1,17 @@
+<select class="form-select w-25" [(ngModel)]="rol">
+  <option value="admin">Admin</option>
+  <option value="editor">Editor</option>
+  <option value="invitado">Invitado</option>
+</select>
+
+<div class="container mt-4">
+  <h2>Rol de usuario</h2>
+
+  @if (rol === 'admin') {
+    <p class="text-success">Bienvenido administrador. Tienes acceso completo al sistema.</p>
+  } @else if (rol === 'editor') {
+    <p class="text-primary">Bienvenido editor. Puedes modificar contenido.</p>
+  } @else {
+    <p class="text-secondary">Bienvenido invitado. Acceso limitado.</p>
+  }
+</div>

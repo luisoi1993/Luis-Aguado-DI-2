@@ -1,1 +1,51 @@
 <h2>Componente decisiones</h2>
+
+<button class="btn btn-primary mb-3" (click)="mostarBoton()">Mostrar / Ocultar</button>
+
+@if (mostrar) {
+  <p>La condición de evaluación es true</p>
+}
+
+<form (ngSubmit)="guardarCandidato()">
+  <div class="mb-3">
+    <label class="form-label">Nombre</label>
+    <input type="text" class="form-control" name="nombre" [(ngModel)]="candidato.nombre" />
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Apellido</label>
+    <input type="text" class="form-control" name="apellido" [(ngModel)]="candidato.apellido" />
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Edad</label>
+    <input type="number" class="form-control" name="edad" [(ngModel)]="candidato.edad" />
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Salario</label>
+    <input type="number" class="form-control" name="salario" [(ngModel)]="candidato.salario" />
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Años de experiencia</label>
+    <input
+      type="number"
+      class="form-control"
+      name="experiencia"
+      [(ngModel)]="candidato.experiencia"
+    />
+  </div>
+
+  <button class="btn btn-success" type="submit">Evaluar candidato</button>
+</form>
+
+@if (contratado === true) {
+  <div class="alert alert-success mt-3">
+    El candidato con nombre {{ candidato.nombre }} se ha contratado
+  </div>
+} @else if (contratado === false) {
+  <div class="alert alert-danger mt-3">
+    El candidato con nombre {{ candidato.nombre }} no cumple los requisitos
+  </div>
+}

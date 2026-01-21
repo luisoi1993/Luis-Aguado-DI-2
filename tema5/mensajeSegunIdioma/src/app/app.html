@@ -1,0 +1,17 @@
+<select class="form-select w-25" [(ngModel)]="idioma">
+  <option value="espanol">Español</option>
+  <option value="ingles">Inglés</option>
+  <option value="frances">Francés</option>
+</select>
+
+@switch (idioma) {
+  @case ('espanol') {
+    <h1>Hola Mundo</h1>
+  }
+  @case ('ingles') {
+    <h1>Hello World</h1>
+  }
+  @case ('frances') {
+    <h1>Bonjour le monde</h1>
+  }
+}

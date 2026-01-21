@@ -1,1 +1,123 @@
-<p>selecciones works!</p>
+<!-- Crear un formulario donde indique cual es el tipo de pago que se realizara en una compra 
+ para ello el debera incluir los siguientes campos :
+ -nombre
+ -direccion de envio
+ --direccion de facturacion
+ -coste
+ -tipo de pago:
+ bizum,
+ pago ordinario
+ trasferencia
+ 
+ En caso de bizum un input para telefono
+ en caso de pago ordinario un input con numero de tarjeta, cv/v , mes/año caducidad
+ en caso de trasferencia un input para el numero de cuenta
+ 
+ una vez le doy al boton validar en un alert
+ -el producto se envio correctamente al usuario NOMBRE
+ con un conte de xxxxx(+5% si es trasfarencia)
+ a la direccion de facturacion xxxx
+ los datos de pago son: 
+ ordinario:tarjeta xxxx
+ bizum: numero xxx
+ trasferencia : cuenta xxxxx 
+ -->
+
+<h2 class="mb-4">Componente selecciones</h2>
+
+<form class="card p-4 shadow-sm" (ngSubmit)="guardarCandidato()">
+  <!-- Datos personales -->
+  <h5 class="mb-3">Datos del comprador</h5>
+
+  <div class="mb-3">
+    <label class="form-label">Nombre</label>
+    <input type="text" class="form-control" name="nombre" required [(ngModel)]="comprador.nombre" />
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Dirección de envío</label>
+    <input
+      type="text"
+      class="form-control"
+      name="direccionEnvio"
+      required
+      [(ngModel)]="comprador.direccionEnvio"
+    />
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Dirección de facturación</label>
+    <input
+      type="text"
+      class="form-control"
+      name="direccionFacturacion"
+      required
+      [(ngModel)]="comprador.direccionFacturacion"
+    />
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Coste (€)</label>
+    <input type="number" class="form-control" name="coste" required [(ngModel)]="comprador.coste" />
+  </div>
+
+  <!-- Tipo de pago -->
+  <h5 class="mt-4 mb-3">Método de pago</h5>
+
+  <div class="mb-3">
+    <label class="form-label">Tipo de pago</label>
+    <select class="form-select" name="tipoPago" required [(ngModel)]="comprador.tipoPago">
+      <option value="" disabled>Seleccione una opción</option>
+      <option value="bizum">Bizum</option>
+      <option value="pagoOrdinario">Pago ordinario</option>
+      <option value="trasferencia">Transferencia</option>
+    </select>
+  </div>
+
+  <!-- Campos dinámicos según tipo de pago -->
+  @switch (comprador.tipoPago) {
+    @case ('bizum') {
+      <div class="mb-3">
+        <label class="form-label">Teléfono (Bizum)</label>
+        <input
+          type="text"
+          class="form-control"
+          name="telefono"
+          required
+          [(ngModel)]="comprador.telefono"
+        />
+      </div>
+    }
+
+    @case ('pagoOrdinario') {
+      <div class="mb-3">
+        <label class="form-label">Número de tarjeta</label>
+        <input
+          type="text"
+          class="form-control"
+          name="tarjeta"
+          required
+          [(ngModel)]="comprador.tarjeta"
+        />
+      </div>
+    }
+
+    @case ('trasferencia') {
+      <div class="mb-3">
+        <label class="form-label">Número de cuenta</label>
+        <input
+          type="text"
+          class="form-control"
+          name="cuenta"
+          required
+          [(ngModel)]="comprador.cuenta"
+        />
+      </div>
+    }
+  }
+
+  <!-- Botón -->
+  <div class="d-grid mt-4">
+    <button type="submit" class="btn btn-success">Validar compra</button>
+  </div>
+</form>

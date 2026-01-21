@@ -1,0 +1,17 @@
+<select class="form-select w-25" [(ngModel)]="estadoPedido">
+  <option value="pendiente">Pendiente</option>
+  <option value="enviado">Enviado</option>
+  <option value="entregado">Entregado</option>
+</select>
+
+@switch (estadoPedido) {
+  @case ('pendiente') {
+    <p>Su pedido está pendiente de envío.</p>
+  }
+  @case ('enviado') {
+    <p>Su pedido ha sido enviado.</p>
+  }
+  @case ('entregado') {
+    <p>Su pedido ha sido entregado.</p>
+  }
+}
