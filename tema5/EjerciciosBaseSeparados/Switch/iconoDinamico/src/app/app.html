@@ -1,0 +1,31 @@
+<!--Crea una variable tipoArchivo (pdf, doc, img). Usa *ngSwitch 
+para mostrar un icono diferente según el tipo de archivo seleccionado
+ desde un select. Puedes utilizar variables para guardar la ruta del icono 
+ con boostrap hazmelo con switch moderno-->
+
+<div class="mb-3">
+  <label class="form-label">Selecciona el tipo de archivo:</label>
+  <select class="form-select" [(ngModel)]="tipoArchivo">
+    <option value="pdf">PDF</option>
+    <option value="doc">Documento</option>
+    <option value="img">Imagen</option>
+  </select>
+</div>
+
+@switch (tipoArchivo) {
+  @case ('pdf') {
+    <img src="icons/icono1.png" alt="Icono PDF" width="64" />
+  }
+
+  @case ('doc') {
+    <img src="icons/icono2.jpg" alt="Icono Documento" width="64" />
+  }
+
+  @case ('img') {
+    <img src="icons/icono3.png" alt="Icono Imagen" width="64" />
+  }
+
+  @default {
+    <p class="text-muted">Selecciona un tipo de archivo válido.</p>
+  }
+}

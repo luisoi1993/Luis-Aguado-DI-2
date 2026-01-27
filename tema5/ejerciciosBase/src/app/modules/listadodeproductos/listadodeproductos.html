@@ -1,0 +1,19 @@
+<!--Define un array de productos en el componente y muestra la lista en la vista usando 
+*ngFor mediante cartas, donde se mostrarán todas las características del elemento. Para ello, 
+es necesario que te definas un modelo de ingrediente, donde tiene como caracteristicas nombre, precio y tipo.-->
+
+<!-- Mejorar la apariencia de las tarjetas -->
+
+<main class="container mt-4">
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    <div class="col" *ngFor="let producto of productos">
+      <div class="card h-100 shadow-sm border-0 rounded">
+        <div class="card-body text-center">
+          <h5 class="card-title">{{ producto.nombre }}</h5>
+          <p class="card-text">Precio: {{ producto.precio | currency: 'USD' }}</p>
+          <p class="card-text">Tipo: {{ producto.tipo }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

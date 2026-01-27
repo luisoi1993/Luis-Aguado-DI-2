@@ -26,7 +26,7 @@
 <h2 class="mb-4">Componente selecciones</h2>
 
 <form class="card p-4 shadow-sm" (ngSubmit)="guardarCandidato()">
-  <!-- Datos personales -->
+  <!-- Datos del comprador -->
   <h5 class="mb-3">Datos del comprador</h5>
 
   <div class="mb-3">
@@ -61,7 +61,7 @@
     <input type="number" class="form-control" name="coste" required [(ngModel)]="comprador.coste" />
   </div>
 
-  <!-- Tipo de pago -->
+  <!-- Método de pago -->
   <h5 class="mt-4 mb-3">Método de pago</h5>
 
   <div class="mb-3">
@@ -74,7 +74,7 @@
     </select>
   </div>
 
-  <!-- Campos dinámicos según tipo de pago -->
+  <!-- Campos dinámicos -->
   @switch (comprador.tipoPago) {
     @case ('bizum') {
       <div class="mb-3">
@@ -100,6 +100,31 @@
           [(ngModel)]="comprador.tarjeta"
         />
       </div>
+
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Fecha de caducidad</label>
+          <input
+            type="month"
+            class="form-control"
+            name="caducidad"
+            required
+            [(ngModel)]="comprador.caducidad"
+          />
+        </div>
+
+        <div class="col-md-6 mb-3">
+          <label class="form-label">CVV</label>
+          <input
+            type="password"
+            class="form-control"
+            name="cvv"
+            required
+            maxlength="4"
+            [(ngModel)]="comprador.cvv"
+          />
+        </div>
+      </div>
     }
 
     @case ('trasferencia') {
@@ -116,7 +141,6 @@
     }
   }
 
-  <!-- Botón -->
   <div class="d-grid mt-4">
     <button type="submit" class="btn btn-success">Validar compra</button>
   </div>

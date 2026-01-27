@@ -1,52 +1,72 @@
 import { Component } from '@angular/core';
-import Swal from 'sweetalert2'
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-selecciones',
   standalone: false,
   templateUrl: './selecciones.html',
-  styleUrl: './selecciones.css',
+  styleUrl: './selecciones.css', // 👈 lo dejamos como lo tienes, porque así te funciona
 })
 export class Selecciones {
 
-    seleccion = '1';
+  seleccion = '1';
 
-    comprador = {
+  comprador = {
     nombre: '',
     direccionEnvio: '',
     direccionFacturacion: '',
     coste: null as number | null,
     tipoPago: '',
     telefono: '',
-    tarjeta: null as number | null,
+    tarjeta: '',
+    caducidad: '',
+    cvv: '',
     cuenta: ''
   };
 
-
-   
-
-     guardarCandidato() {
-    const { nombre, direccionEnvio, direccionFacturacion, coste, tipoPago } = this.comprador;
-
-   
-    console.log('Candidato evaluado:', this.comprador);
-
-   this.alerta();
-    
+  guardarCandidato() {
+    console.log('Compra evaluada:', this.comprador);
+    this.alerta();
   }
 
   alerta() {
-    switch(this.comprador.tipoPago) {
+    let costeFinal = this.comprador.coste ?? 0;
+    let datosPago = '';
+
+    // +5% si es transferencia
+    if (this.comprador.tipoPago === 'trasferencia') {
+      costeFinal = costeFinal * 1.05;
+    }
+
+    switch (this.comprador.tipoPago) {
+
       case 'bizum':
-        alert("Compra validada correctamente el telefono es ${this.comprador.telefono}");
+        datosPago = `Bizum (Teléfono: ${this.comprador.telefono})`;
         break;
+
       case 'pagoOrdinario':
-        alert("Compra validada correctamente la tarjeta es ${this.comprador.tarjeta}");
+        datosPago = `
+          Tarjeta: ${this.comprador.tarjeta}<br>
+          Caducidad: ${this.comprador.caducidad}<br>
+          CVV: ${this.comprador.cvv}
+        `;
         break;
+
       case 'trasferencia':
-        alert("Compra validada correctamente la cuenta es ${this.comprador.cuenta}");
+        datosPago = `Cuenta: ${this.comprador.cuenta}`;
         break;
     }
-  }
 
+    Swal.fire({
+      icon: 'success',
+      title: 'Compra validada correctamente',
+      html: `
+        <p><strong>El producto se envió correctamente al usuario:</strong> ${this.comprador.nombre}</p>
+        <p><strong>Coste final:</strong> ${costeFinal.toFixed(2)} €</p>
+        <p><strong>Dirección de facturación:</strong> ${this.comprador.direccionFacturacion}</p>
+        <p><strong>Datos de pago:</strong><br>${datosPago}</p>
+      `,
+      confirmButtonText: 'Aceptar'
+    });
+  }
 }

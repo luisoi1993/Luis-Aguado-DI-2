@@ -1,0 +1,28 @@
+<!-- Crea un formulario con un campo para ingresar la edad. Si la edad es menor de 18, muestra un mensaje con `*ngIf` indicando que el acceso está restringido.
+
+Una vez realizado el ejercicio, modificalo para que se muestre un mensaje tambi´en en el caso de que la edad sea mayor o igual a 18-->
+
+<div class="container mt-5">
+  <h2 class="mb-4">Validación de Edad</h2>
+  <form>
+    <div class="mb-3">
+      <label for="ageInput" class="form-label">Ingrese su edad:</label>
+      <input
+        type="number"
+        id="ageInput"
+        class="form-control"
+        [(ngModel)]="age"
+        name="age"
+        placeholder="Edad"
+      />
+    </div>
+  </form>
+
+  <div *ngIf="age < 18 && age !== null" class="alert alert-danger" role="alert">
+    Acceso restringido. Debes ser mayor de 18 años.
+  </div>
+
+  <div *ngIf="age >= 18" class="alert alert-success" role="alert">
+    Acceso permitido. Bienvenido.
+  </div>
+</div>

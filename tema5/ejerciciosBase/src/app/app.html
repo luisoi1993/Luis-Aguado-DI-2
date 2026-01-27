@@ -1,0 +1,29 @@
+<!--Al cambiar la selección del select, deberá mostrarse el componente indicado. Para ello puedes utilizar *ngSwitch-->
+<select [(ngModel)]="selectedComponent">
+  <option value="mensajerol">Mensajerol</option>
+  <option value="mostrarocultarmensaje">MostrarOcultarMensaje</option>
+  <option value="validaciondeedad">ValidacionDeEdad</option>
+  <option value="checkboxdinamico">CheckBoxDinamico</option>
+  <option value="formulariodeusuario">FormularioDeUsuario</option>
+  <option value="selectordeopciones">SelectorDeOpciones</option>
+  <option value="iconodinamico">IconoDinamico</option>
+  <option value="mensajeestadopedido">MensajeEstadoPedido</option>
+  <option value="mensajesegunidioma">MensajeSegunIdioma</option>
+  <option value="listabotoneliminar">ListaBotonEliminar</option>
+  <option value="listadodeproductos">ListaDeProductos</option>
+  <option value="numerarunalista">NumerarUnaLista</option>
+</select>
+<ng-container [ngSwitch]="selectedComponent">
+  <app-mensajerol *ngSwitchCase="'mensajerol'"></app-mensajerol>
+  <app-mostrarocultarmensaje *ngSwitchCase="'mostrarocultarmensaje'"></app-mostrarocultarmensaje>
+  <app-validaciondeedad *ngSwitchCase="'validaciondeedad'"></app-validaciondeedad>
+  <app-checkboxdinamico *ngSwitchCase="'checkboxdinamico'"></app-checkboxdinamico>
+  <app-formulariodeusuario *ngSwitchCase="'formulariodeusuario'"></app-formulariodeusuario>
+  <app-selectordeopciones *ngSwitchCase="'selectordeopciones'"></app-selectordeopciones>
+  <app-iconodinamico *ngSwitchCase="'iconodinamico'"></app-iconodinamico>
+  <app-mensajeestadopedido *ngSwitchCase="'mensajeestadopedido'"></app-mensajeestadopedido>
+  <app-mensajesegunidioma *ngSwitchCase="'mensajesegunidioma'"></app-mensajesegunidioma>
+  <app-listabotoneliminar *ngSwitchCase="'listabotoneliminar'"></app-listabotoneliminar>
+  <app-listadodeproductos *ngSwitchCase="'listadodeproductos'"></app-listadodeproductos>
+  <app-numerarunalista *ngSwitchCase="'numerarunalista'"></app-numerarunalista>
+</ng-container>
