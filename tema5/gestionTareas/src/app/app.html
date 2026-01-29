@@ -1,0 +1,20 @@
+<h1>Gestión de Tareas</h1>
+<select name="opciones" id="opciones" #opciones>
+  <option value="ver-tareas">Ver Tareas</option>
+  <option value="agregar-tarea">Agregar Tarea</option>
+  <option value="eliminar-tarea">Eliminar Tarea</option>
+</select>
+<div id="contenido">
+  <!-- El contenido dinámico se cargará aquí -->
+  @switch (opciones.value) {
+    @case ('ver-tareas') {
+      <app-mostrar></app-mostrar>
+    }
+    @case ('agregar-tarea') {
+      <app-agregar></app-agregar>
+    }
+    @case ('eliminar-tarea') {
+      <app-buscar></app-buscar>
+    }
+  }
+</div>

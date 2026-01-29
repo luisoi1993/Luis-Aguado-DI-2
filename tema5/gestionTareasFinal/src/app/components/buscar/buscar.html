@@ -1,0 +1,67 @@
+<div class="container my-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <!-- Card principal -->
+      <div class="card shadow border-0">
+        <div class="card-body p-4">
+          <h2 class="text-center mb-4 fw-bold">🔍 Buscar tareas por prioridad</h2>
+
+          <!-- Filtro -->
+          <div class="mb-4">
+            <label class="form-label fw-semibold"> Filtrar por prioridad </label>
+            <select class="form-select" [(ngModel)]="prioridadSeleccionada">
+              <option value="">Todas</option>
+              <option value="baja">🟢 Baja</option>
+              <option value="media">🟡 Media</option>
+              <option value="alta">🔴 Alta</option>
+            </select>
+          </div>
+
+          <!-- Listado -->
+          <div class="row g-4">
+            @for (tarea of tareasFiltradas; track $index) {
+              <div class="col-md-6">
+                <div class="card h-100 shadow-sm border-0">
+                  <div class="card-body">
+                    <h5 class="card-title fw-bold">
+                      {{ tarea.titulo }}
+                    </h5>
+
+                    <p class="card-text">
+                      {{ tarea.descripcion }}
+                    </p>
+
+                    <span
+                      class="badge"
+                      [ngClass]="{
+                        'bg-success': tarea.tipo === 'baja',
+                        'bg-warning text-dark': tarea.tipo === 'media',
+                        'bg-danger': tarea.tipo === 'alta',
+                      }"
+                    >
+                      {{ tarea.tipo | uppercase }}
+                    </span>
+
+                    <p class="text-muted mt-2 mb-1">📅 {{ tarea.fecha | date: 'shortDate' }}</p>
+
+                    <ul class="list-group list-group-flush mt-2">
+                      <li class="list-group-item px-0" *ngFor="let item of tarea.items">
+                        ✔️ {{ item }}
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            }
+
+            @if (tareasFiltradas.length === 0) {
+              <div class="col-12">
+                <div class="alert alert-info text-center">No hay tareas con esa prioridad</div>
+              </div>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

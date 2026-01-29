@@ -1,0 +1,78 @@
+<div class="container my-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-10">
+      <div class="card shadow border-0">
+        <div class="card-body p-4">
+          <h2 class="text-center mb-4 fw-bold">📋 Todas las tareas</h2>
+
+          <div class="row g-4">
+            @for (tarea of tareas; track $index) {
+              <div class="col-md-6 col-lg-4">
+                <div class="card h-100 shadow-sm border-0">
+                  @switch (tarea.tipo) {
+                    @case ('baja') {
+                      <img
+                        src="data:image/png;base64,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"
+                        class="card-img-top"
+                        alt="Imagen de tarea"
+                        style="height: 200px; object-fit: cover"
+                      />
+                    }
+
+                    @case ('media') {
+                      <div class="border-start border-4 border-warning"></div>
+                    }
+
+                    @case ('alta') {
+                      <div class="border-start border-4 border-danger"></div>
+                    }
+                  }
+
+                  <div class="card-body d-flex flex-column">
+                    <!-- Título -->
+                    <h5 class="card-title fw-bold">
+                      {{ tarea.titulo }}
+                    </h5>
+
+                    <!-- Descripción -->
+                    <p class="card-text flex-grow-1">
+                      {{ tarea.descripcion }}
+                    </p>
+
+                    <!-- Prioridad -->
+                    <span
+                      class="badge mb-2"
+                      [ngClass]="{
+                        'bg-success': tarea.tipo === 'baja',
+                        'bg-warning text-dark': tarea.tipo === 'media',
+                        'bg-danger': tarea.tipo === 'alta',
+                      }"
+                    >
+                      {{ tarea.tipo | uppercase }}
+                    </span>
+
+                    <!-- Fecha -->
+                    <p class="text-muted mb-2">📅 {{ tarea.fecha | date: 'shortDate' }}</p>
+
+                    <!-- Items -->
+                    <ul class="list-group list-group-flush mt-2">
+                      <li class="list-group-item px-0" *ngFor="let item of tarea.items">
+                        ✔️ {{ item }}
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            }
+
+            @if (tareas.length === 0) {
+              <div class="col-12">
+                <div class="alert alert-info text-center">No hay tareas registradas</div>
+              </div>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

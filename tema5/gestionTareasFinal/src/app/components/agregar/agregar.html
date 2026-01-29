@@ -1,0 +1,73 @@
+<div class="container my-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+      <div class="card shadow-lg border-0">
+        <div class="card-body p-4">
+          <h2 class="text-center mb-4 fw-bold">📝 Agregar Nueva Tarea</h2>
+
+          <form (ngSubmit)="agregarTarea()">
+            <div class="mb-3">
+              <label class="form-label fw-semibold">Título</label>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Introduce el título de la tarea"
+                [(ngModel)]="nuevaTarea.titulo"
+                name="titulo"
+                required
+              />
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label fw-semibold">Descripción</label>
+              <textarea
+                class="form-control"
+                rows="3"
+                placeholder="Describe la tarea"
+                [(ngModel)]="nuevaTarea.descripcion"
+                name="descripcion"
+                required
+              ></textarea>
+            </div>
+
+            <div class="mb-4">
+              <label class="form-label fw-semibold">Prioridad</label>
+              <select class="form-select" [(ngModel)]="nuevaTarea.tipo" name="tipo">
+                <option value="baja">🟢 Baja</option>
+                <option value="media">🟡 Media</option>
+                <option value="alta">🔴 Alta</option>
+              </select>
+            </div>
+
+            <div class="mb-4">
+              <label class="form-label fw-semibold">Items de la tarea</label>
+
+              <div class="input-group mb-2">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Añadir item"
+                  [(ngModel)]="itemTemporal"
+                  name="itemTemporal"
+                />
+                <button type="button" class="btn btn-outline-secondary" (click)="agregarItem()">
+                  ➕
+                </button>
+              </div>
+
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item d-flex align-items-center" *ngFor="let item of items">
+                  ✔️ {{ item }}
+                </li>
+              </ul>
+            </div>
+
+            <div class="d-grid">
+              <button type="submit" class="btn btn-success btn-lg">➕ Crear Tarea</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

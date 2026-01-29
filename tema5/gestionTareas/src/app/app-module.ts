@@ -4,17 +4,16 @@ import { BrowserModule, provideClientHydration, withEventReplay } from '@angular
 import { AppRoutingModule } from './app-routing-module';
 import { App } from './app';
 import { FormsModule } from '@angular/forms';
-import { Decisiones } from './components/decisiones/decisiones';
-import { Selecciones } from './components/selecciones/selecciones';
-import { Repeticiones } from './components/repeticiones/repeticiones';
+import { Agregar } from './modules/agregar/agregar';
+import { Mostrar } from './modules/mostrar/mostrar';
+import { Buscar } from './modules/buscar/buscar';
 
 @NgModule({
   declarations: [
     App,
-    Decisiones,
-    Selecciones,
-    Repeticiones,
-    
+    Agregar,
+    Mostrar,
+    Buscar
   ],
   imports: [
     BrowserModule,

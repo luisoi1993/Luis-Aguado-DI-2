@@ -1,0 +1,46 @@
+<h2>Repeticiones</h2>
+<p>EL for sirve para poder crear elementos de forma iterativo sobre un array</p>
+<!--Crear un input para poder introducir nuevos usuarios 
+una vez introducido pulsar el boton agregar 
+- en caso de no tener nada en el input sweet alert con el aviso 
+en caso de tener algo: 
+-si el nombre ya esta en la lista , aviso de error 
+-si no esta en la lista agregarlo -->
+
+<!--<input class="form-control" type="text" #nuevoUsuario placeholder="Introduce usuario" />-->
+<input class="form-control" type="text" #nombre placeholder="Introduce nombre" />
+<input class="form-control" type="text" #apellido placeholder="Introduce apellido" />
+<input class="form-control" type="number" #edad placeholder="Introduce edad" />
+<div class="row">
+  <!--dividir por la mitad el div-->
+  <input class="form-control col" type="text" #hobbie placeholder="Introduce hobbie" />
+  <button
+    class="btn btn-secondary mt-2 col"
+    (click)="agregarHobbieTemporal(hobbie.value); hobbie.value = ''"
+  >
+    Agregar hobbie
+  </button>
+</div>
+
+<button
+  class="btn btn-primary"
+  (click)="
+    agregarUsuario(nombre.value, apellido.value, edad.valueAsNumber);
+    nombre.value = '';
+    apellido.value = ''
+  "
+>
+  Agregar
+</button>
+
+<ul class="list-group">
+  <!--<li *ngFor="let usuario of usuarios" clas="list-group-item">{{ usuario }}</li>-->
+  @for (item of usuarios; track $index) {
+    <li class="list-group-item">{{ item.getNombre() }}</li>
+    <ul>
+      @for (hobbie of item.mostrarHobbies(); track $index) {
+        <li>{{ hobbie }}</li>
+      }
+    </ul>
+  }
+</ul>

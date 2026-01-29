@@ -1,0 +1,45 @@
+<div class="container my-5">
+  <div class="card shadow-sm border-0">
+    <div class="card-body">
+      <!-- Título -->
+      <h1 class="text-center mb-4 fw-bold">Gestión de Tareas</h1>
+
+      <!-- Selector -->
+      <div class="mb-4">
+        <label class="form-label fw-semibold">Seleccione una acción</label>
+        <select class="form-select form-select-lg" [(ngModel)]="opcionSeleccionada">
+          <option value="ver-tareas">Ver tareas</option>
+          <option value="agregar-tarea">Agregar tarea</option>
+          <option value="eliminar-tarea">Eliminar tarea</option>
+        </select>
+      </div>
+
+      <!-- Contenido dinámico -->
+      <div class="mt-4">
+        @switch (opcionSeleccionada) {
+          @case ('ver-tareas') {
+            <div class="fade-in">
+              <app-mostrar></app-mostrar>
+            </div>
+          }
+
+          @case ('agregar-tarea') {
+            <div class="fade-in">
+              <app-agregar></app-agregar>
+            </div>
+          }
+
+          @case ('eliminar-tarea') {
+            <div class="fade-in">
+              <app-buscar></app-buscar>
+            </div>
+          }
+
+          @default {
+            <div class="alert alert-info text-center">Selecciona una opción para comenzar</div>
+          }
+        }
+      </div>
+    </div>
+  </div>
+</div>
