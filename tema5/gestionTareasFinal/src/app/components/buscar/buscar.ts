@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Tarea } from '../../model/tarea';
+import { Tareas } from '../../services/tareas';
 
 @Component({
   selector: 'app-buscar',
@@ -8,22 +9,22 @@ import { Tarea } from '../../model/tarea';
   styleUrl: './buscar.css',
 })
 export class Buscar {
-
-    // 🔹 Simulación local (luego se sustituirá por servicio/pipe)
-  tareas: Tarea[] = [
-    new Tarea('Comprar comida', 'Ir al supermercado', 'media'),
-    new Tarea('Estudiar Angular', 'Repasar pipes', 'alta'),
-    new Tarea('Pasear al perro', '30 minutos', 'baja'),
-  ];
+ 
+  constructor(private tareasService: Tareas) {}
 
   prioridadSeleccionada: 'baja' | 'media' | 'alta' | '' = '';
 
+  // 👇 MISMO MÉTODO QUE USAS EN MOSTRAR
+  get tareas(): Tarea[] {
+    return this.tareasService.getTareas();
+  }
+
   get tareasFiltradas(): Tarea[] {
-    if (!this.prioridadSeleccionada) {
-      return this.tareas;
-    }
+    if (!this.prioridadSeleccionada) return this.tareas;
+
     return this.tareas.filter(
-      tarea => tarea.tipo === this.prioridadSeleccionada
+      t => t.tipo === this.prioridadSeleccionada
     );
   }
+  
 }

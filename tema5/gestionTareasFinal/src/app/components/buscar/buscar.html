@@ -1,14 +1,14 @@
 <div class="container my-5">
   <div class="row justify-content-center">
-    <div class="col-lg-8">
-      <!-- Card principal -->
-      <div class="card shadow border-0">
+    <div class="col-lg-9">
+      <div class="card shadow-lg border-0">
         <div class="card-body p-4">
           <h2 class="text-center mb-4 fw-bold">🔍 Buscar tareas por prioridad</h2>
 
           <!-- Filtro -->
           <div class="mb-4">
-            <label class="form-label fw-semibold"> Filtrar por prioridad </label>
+            <label class="form-label fw-semibold">Filtrar por prioridad</label>
+
             <select class="form-select" [(ngModel)]="prioridadSeleccionada">
               <option value="">Todas</option>
               <option value="baja">🟢 Baja</option>
@@ -17,35 +17,48 @@
             </select>
           </div>
 
-          <!-- Listado -->
+          <!-- Cards -->
           <div class="row g-4">
             @for (tarea of tareasFiltradas; track $index) {
               <div class="col-md-6">
                 <div class="card h-100 shadow-sm border-0">
-                  <div class="card-body">
-                    <h5 class="card-title fw-bold">
+                  <div class="card-body d-flex flex-column">
+                    <!-- Título -->
+                    <h5 class="fw-bold mb-1">
                       {{ tarea.titulo }}
                     </h5>
 
-                    <p class="card-text">
+                    <!-- Responsable -->
+                    <p class="text-muted small mb-2">
+                      👤 {{ tarea.responsable || 'Sin responsable' }}
+                    </p>
+
+                    <!-- Descripción -->
+                    <p class="flex-grow-1">
                       {{ tarea.descripcion }}
                     </p>
 
-                    <span
-                      class="badge"
-                      [ngClass]="{
-                        'bg-success': tarea.tipo === 'baja',
-                        'bg-warning text-dark': tarea.tipo === 'media',
-                        'bg-danger': tarea.tipo === 'alta',
-                      }"
-                    >
-                      {{ tarea.tipo | uppercase }}
-                    </span>
+                    <!-- Badges -->
+                    <div class="mb-2">
+                      <span
+                        class="badge me-2"
+                        [ngClass]="{
+                          'bg-success': tarea.tipo === 'baja',
+                          'bg-warning text-dark': tarea.tipo === 'media',
+                          'bg-danger': tarea.tipo === 'alta',
+                        }"
+                      >
+                        {{ tarea.tipo | uppercase }}
+                      </span>
 
-                    <p class="text-muted mt-2 mb-1">📅 {{ tarea.fecha | date: 'shortDate' }}</p>
+                      <span class="badge bg-secondary">
+                        📅 {{ tarea.fecha | date: 'shortDate' }}
+                      </span>
+                    </div>
 
-                    <ul class="list-group list-group-flush mt-2">
-                      <li class="list-group-item px-0" *ngFor="let item of tarea.items">
+                    <!-- Items -->
+                    <ul class="list-group list-group-flush small mt-2">
+                      <li class="list-group-item px-0 py-1" *ngFor="let item of tarea.items">
                         ✔️ {{ item }}
                       </li>
                     </ul>

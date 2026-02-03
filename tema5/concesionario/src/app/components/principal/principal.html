@@ -1,0 +1,127 @@
+<!--- Parte izquierda: dicha parte mostrará un formulario con la introducción de datos de un coche tales como: marca, modelo, marca, cv, cc, tipo motor (híbrido - eléctrico), matrícula y precio. Al darle al botón agregar se introducirá un objeto de tipo Coche dentro de un array
+    
+    En esta parte izquierda se mostrará el número de coches que existen dentro del array dentro de una alerta. Es importante que hasta que no tenga al menos un coche metido dentro de la lista, esta alerta no aparecerá.
+    
+
+El formulario deberá tener una validación de datos, mostrando una alerta de agregado correctamente (que se cerrará automáticamente en 3 segundos) o incorrectos en el caso de que falte algún dato dentro del formulario (la cual tendrá un botón para que el usuario la cierre). 
+
+- Parte derecha: Se mostrarán los datos de cada uno de los coches en formato carta. Cada vez que se agregue un coche aparecerá una carta nueva con los datos del mismo: imagen, modelo, precio-->>
+
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-md-6">
+      <!-- Parte Izquierda: Formulario de Agregar Coche -->
+      <h2>Agregar Coche</h2>
+      <form (ngSubmit)="agregarCoche()" #cocheForm="ngForm">
+        <div class="mb-3">
+          <label for="marca" class="form-label">Marca</label>
+          <input
+            type="text"
+            id="marca"
+            class="form-control"
+            required
+            [(ngModel)]="nuevoCoche.marca"
+            name="marca"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="modelo" class="form-label">Modelo</label>
+          <input
+            type="text"
+            id="modelo"
+            class="form-control"
+            required
+            [(ngModel)]="nuevoCoche.modelo"
+            name="modelo"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="cv" class="form-label">CV</label>
+          <input
+            type="number"
+            id="cv"
+            class="form-control"
+            required
+            [(ngModel)]="nuevoCoche.cv"
+            name="cv"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="cc" class="form-label">CC</label>
+          <input
+            type="number"
+            id="cc"
+            class="form-control"
+            required
+            [(ngModel)]="nuevoCoche.cc"
+            name="cc"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="tipoMotor" class="form-label">Tipo Motor</label>
+          <select
+            id="tipoMotor"
+            class="form-select"
+            required
+            [(ngModel)]="nuevoCoche.tipoMotor"
+            name="tipoMotor"
+          >
+            <option value="" disabled selected>Seleccione tipo de motor</option>
+            <option value="Híbrido">Híbrido</option>
+            <option value="Eléctrico">Eléctrico</option>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label for="matricula" class="form-label">Matrícula</label>
+          <input
+            type="text"
+            id="matricula"
+            class="form-control"
+            required
+            [(ngModel)]="nuevoCoche.matricula"
+            name="matricula"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="precio" class="form-label">Precio</label>
+          <input
+            type="number"
+            id="precio"
+            class="form-control"
+            required
+            [(ngModel)]="nuevoCoche.precio"
+            name="precio"
+          />
+        </div>
+        <button type="submit" class="btn btn-primary">Agregar</button>
+      </form>
+    </div>
+    <div class="col-md-6">
+      <!-- Parte Derecha: Mostrar Coches en Cartas -->
+      <h2>Lista de Coches</h2>
+      <div *ngFor="let coche of coches" class="card mb-3">
+        <div class="row g-0">
+          <div class="col-md-4">
+            <img
+              src="data:image/jpeg;base64,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"
+              class="img-fluid rounded-start"
+              alt="{{ coche.modelo }}"
+            />
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title">{{ coche.marca }} {{ coche.modelo }}</h5>
+              <p class="card-text">Precio: €{{ coche.precio }}</p>
+              <p class="card-text">
+                <small class="text-muted"
+                  >CV: {{ coche.cv }}, CC: {{ coche.cc }}, Motor: {{ coche.tipoMotor }}, Matrícula:
+                  {{ coche.matricula }}</small
+                >
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

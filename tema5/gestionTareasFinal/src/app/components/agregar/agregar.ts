@@ -11,55 +11,88 @@ import { Tareas } from '../../services/tareas';
 })
 export class Agregar {
 
-  constructor(private tareasService: Tareas) {
-    //logica
-  }
+ constructor(private tareasService: Tareas) {}
 
-  
- tareas: Tarea[] = [];
+  // lista local (opcional visual)
+  tareas: Tarea[] = [];
 
-  // tarea en construcción
+  // 🔹 objeto ligado al formulario
   nuevaTarea = {
     titulo: '',
+    responsable: undefined as string | undefined,
     descripcion: '',
-    tipo: 'media' as 'baja' | 'media' | 'alta'
+    tipo: 'media' as 'baja' | 'media' | 'alta',
+    fecha: '' // string del input date
   };
 
-  // items temporales
+  // 🔹 items temporales
   itemTemporal = '';
   items: string[] = [];
 
-  agregarItem() {
-    if (this.itemTemporal.trim().length > 0) {
+  // ===============================
+  // AGREGAR ITEM
+  // ===============================
+  agregarItem(): void {
+    if (this.itemTemporal.trim()) {
       this.items.push(this.itemTemporal.trim());
       this.itemTemporal = '';
     }
   }
 
-  agregarTarea() {
+  // ===============================
+  // CREAR TAREA
+  // ===============================
+  agregarTarea(): void {
+
+    // validación básica
     if (!this.nuevaTarea.titulo || !this.nuevaTarea.descripcion) {
-      Swal.fire('Error', 'Todos los campos son obligatorios', 'error');
+      Swal.fire('Error', 'Título y descripción obligatorios', 'error');
       return;
     }
 
+    // convertir fecha string → Date
+    const fechaFinal = this.nuevaTarea.fecha
+      ? new Date(this.nuevaTarea.fecha)
+      : new Date();
+
+    // crear instancia
     const tarea = new Tarea(
       this.nuevaTarea.titulo,
+      this.nuevaTarea.responsable,
       this.nuevaTarea.descripcion,
-      this.nuevaTarea.tipo
+      this.nuevaTarea.tipo,
+      fechaFinal
     );
 
+    // añadir items
     this.items.forEach(item => tarea.agregarItem(item));
 
+    // guardar local
     this.tareas.push(tarea);
 
+    // guardar en servicio
+    this.tareasService.agregarTarea(tarea);
+
+    // alerta éxito
     Swal.fire('Éxito', 'Tarea agregada correctamente', 'success');
 
-    // reset
-    this.nuevaTarea = { titulo: '', descripcion: '', tipo: 'media' };
-    this.items = [];
-
-    //llamar al metodo agrgarTarea del servicio
-    this.tareasService.agregarTarea(tarea);
+    // reset formulario
+    this.resetFormulario();
   }
 
+  // ===============================
+  // RESET FORM
+  // ===============================
+  private resetFormulario(): void {
+    this.nuevaTarea = {
+      titulo: '',
+      responsable: undefined,
+      descripcion: '',
+      tipo: 'media',
+      fecha: ''
+    };
+
+    this.items = [];
+    this.itemTemporal = '';
+  }
 }

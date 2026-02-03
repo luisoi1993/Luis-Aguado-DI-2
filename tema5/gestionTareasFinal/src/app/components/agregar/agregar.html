@@ -1,36 +1,51 @@
 <div class="container my-5">
   <div class="row justify-content-center">
     <div class="col-md-8 col-lg-6">
-      <div class="card shadow-lg border-0">
+      <div class="card shadow-lg border-0 rounded-4">
         <div class="card-body p-4">
-          <h2 class="text-center mb-4 fw-bold">📝 Agregar Nueva Tarea</h2>
+          <h2 class="text-center fw-bold mb-4">📝 Agregar Nueva Tarea</h2>
 
           <form (ngSubmit)="agregarTarea()">
+            <!-- TÍTULO -->
             <div class="mb-3">
               <label class="form-label fw-semibold">Título</label>
               <input
                 type="text"
                 class="form-control"
-                placeholder="Introduce el título de la tarea"
+                placeholder="Ej: Estudiar Angular"
                 [(ngModel)]="nuevaTarea.titulo"
                 name="titulo"
                 required
               />
             </div>
 
+            <!-- RESPONSABLE -->
+            <div class="mb-3">
+              <label class="form-label fw-semibold">Responsable</label>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Ej: Juan Pérez"
+                [(ngModel)]="nuevaTarea.responsable"
+                name="responsable"
+              />
+            </div>
+
+            <!-- DESCRIPCIÓN -->
             <div class="mb-3">
               <label class="form-label fw-semibold">Descripción</label>
               <textarea
                 class="form-control"
                 rows="3"
-                placeholder="Describe la tarea"
+                placeholder="Describe la tarea..."
                 [(ngModel)]="nuevaTarea.descripcion"
                 name="descripcion"
                 required
               ></textarea>
             </div>
 
-            <div class="mb-4">
+            <!-- PRIORIDAD -->
+            <div class="mb-3">
               <label class="form-label fw-semibold">Prioridad</label>
               <select class="form-select" [(ngModel)]="nuevaTarea.tipo" name="tipo">
                 <option value="baja">🟢 Baja</option>
@@ -39,6 +54,13 @@
               </select>
             </div>
 
+            <!-- FECHA -->
+            <div class="mb-4">
+              <label class="form-label fw-semibold">Fecha</label>
+              <input type="date" class="form-control" [(ngModel)]="nuevaTarea.fecha" name="fecha" />
+            </div>
+
+            <!-- ITEMS -->
             <div class="mb-4">
               <label class="form-label fw-semibold">Items de la tarea</label>
 
@@ -50,20 +72,23 @@
                   [(ngModel)]="itemTemporal"
                   name="itemTemporal"
                 />
+
                 <button type="button" class="btn btn-outline-secondary" (click)="agregarItem()">
                   ➕
                 </button>
               </div>
 
+              <!-- LISTA ITEMS -->
               <ul class="list-group list-group-flush">
-                <li class="list-group-item d-flex align-items-center" *ngFor="let item of items">
-                  ✔️ {{ item }}
-                </li>
+                @for (item of items; track $index) {
+                  <li class="list-group-item small">✔️ {{ item }}</li>
+                }
               </ul>
             </div>
 
+            <!-- BOTÓN -->
             <div class="d-grid">
-              <button type="submit" class="btn btn-success btn-lg">➕ Crear Tarea</button>
+              <button type="submit" class="btn btn-success btn-lg rounded-3">➕ Crear Tarea</button>
             </div>
           </form>
         </div>
