@@ -45,8 +45,8 @@ export class Agregar {
   agregarTarea(): void {
 
     // validación básica
-    if (!this.nuevaTarea.titulo || !this.nuevaTarea.descripcion) {
-      Swal.fire('Error', 'Título y descripción obligatorios', 'error');
+    if (!this.nuevaTarea.titulo || !this.nuevaTarea.descripcion || this.items.length === 0) {
+      Swal.fire('Error', 'Título, descripción y al menos un item son obligatorios', 'error');
       return;
     }
 
