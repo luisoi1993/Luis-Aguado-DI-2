@@ -2,7 +2,31 @@
   <div class="container-fluid">
     <a class="navbar-brand" [routerLink]="['agregar']">Agregar</a>
     <a class="navbar-brand" [routerLink]="['mostrar']">Listar</a>
-    <a class="navbar-brand" [routerLink]="['buscar', '45']">Buscar</a>
+    <a class="navbar-brand" [routerLink]="['buscar']">Buscar</a>
+    <!--Crear un submenu en buscar-->
+    <ul class="menu">
+      <li>
+        <a href="#">buscar</a>
+      </li>
+
+      <li class="has-submenu">
+        <a class="navbar-brand">Buscar ▾</a>
+
+        <!-- SUBMENU -->
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" (click)="navegar('baja')">baja</a></li>
+          <li><a class="dropdown-item" (click)="navegar('media')">media</a></li>
+
+          <li><a class="dropdown-item" (click)="navegar('alta')">alta</a></li>
+        </ul>
+      </li>
+
+      <li>
+        <a href="#">Contacto</a>
+      </li>
+    </ul>
+
+    <a class="navbar-brand" (click)="navegar('1')">Buscar</a>
   </div>
 </nav>
 

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Tarea } from '../../model/tarea';
 import { Tareas } from '../../services/tareas';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-buscar',
@@ -10,7 +11,7 @@ import { Tareas } from '../../services/tareas';
 })
 export class Buscar {
  
-  constructor(private tareasService: Tareas) {}
+  constructor(private tareasService: Tareas, private gestorRutasActivas: ActivatedRoute) {}
 
   prioridadSeleccionada: 'baja' | 'media' | 'alta' | '' = '';
 

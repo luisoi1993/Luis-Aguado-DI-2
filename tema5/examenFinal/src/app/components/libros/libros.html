@@ -1,0 +1,8 @@
+<!-- libros.html -->
+<h2>Libros</h2>
+
+<div class="row row-cols-1 row-cols-md-3 g-4">
+  @for (item of libros; track $index) {
+    <app-carta [item]="item"></app-carta>
+  }
+</div>

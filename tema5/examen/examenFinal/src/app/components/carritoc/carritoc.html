@@ -1,0 +1,13 @@
+<h2>Carrito</h2>
+
+<div class="row row-cols-1 row-cols-md-3 g-4">
+  @for (item of libros; track $index) {
+    <app-carta [item]="item"></app-carta>
+  }
+</div>
+
+@if (libros.length > 0) {
+  <div class="alert alert-primary mt-3">Hay {{ libros.length }} libros en el carrito</div>
+
+  <button class="btn btn-danger w-100" (click)="comprar()">Comprar</button>
+}

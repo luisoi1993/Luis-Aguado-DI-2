@@ -1,0 +1,22 @@
+<nav class="navbar bg-body-tertiary">
+  <div class="container-fluid">
+    <!--<a class="navbar-brand" (click)="navegar('libros')">Libros</a>-->
+    <a class="navbar-brand" routerLink="/libros">Libros</a>
+    <a class="navbar-brand" routerLink="/carrito">Carrito</a>
+  </div>
+</nav>
+
+<main class="container mt-4">
+  <select name="" id="" [(ngModel)]="selectedComponent">
+    <option value="libros">Libros</option>
+    <option value="carrito">Carrito</option>
+  </select>
+  <button (click)="navegar(selectedComponent)">
+    <!--cambiar de pantalla-->
+  </button>
+  @if (this.selectedComponent === 'libros') {
+    <app-librosc></app-librosc>
+  } @else if (this.selectedComponent === 'carrito') {
+    <app-carritoc></app-carritoc>
+  }
+</main>

@@ -1,0 +1,20 @@
+<!-- detalle.html -->
+<div class="row">
+  <div class="col">
+    <img [src]="libro!!.Pages | imagenes" />
+  </div>
+
+  <div>
+    <p><strong>Título:</strong> {{ libro?.Title }}</p>
+    <p><strong>Año:</strong> {{ libro?.Year }}</p>
+    <p><strong>Editorial:</strong> {{ libro?.Publisher }}</p>
+    <p><strong>ISBN:</strong> {{ libro?.ISBN }}</p>
+    <p><strong>Páginas:</strong> {{ libro?.Pages }}</p>
+
+    <ul class="list-group">
+      @for (v of libro?.villains; track $index) {
+        <li class="list-group-item">{{ v.name }}</li>
+      }
+    </ul>
+  </div>
+</div>

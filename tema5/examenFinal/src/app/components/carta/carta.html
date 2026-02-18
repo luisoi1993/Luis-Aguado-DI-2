@@ -1,0 +1,22 @@
+<!-- carta.html -->
+<div class="col">
+  <div class="card">
+    <img [src]="item!!.Pages | imagenes" class="card-img-top" style="width: 50%" />
+    <div class="card-body">
+      <h5 class="card-title">{{ item!!.Title }}</h5>
+      <p>Año: {{ item!!.Year }}</p>
+
+      <ul class="list-group mb-2">
+        @for (v of item!!.villains; track $index) {
+          <li class="list-group-item">{{ v.name }}</li>
+        }
+      </ul>
+
+      <button class="btn btn-primary w-100 mb-2" (click)="verDetalle(item!!.id)">
+        Ver detalles
+      </button>
+
+      <button class="btn btn-success w-100" (click)="agregar()">Agregar al carrito</button>
+    </div>
+  </div>
+</div>
